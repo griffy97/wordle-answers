@@ -1,18 +1,19 @@
 # seed.ps1 — Run once to populate answers.json with all historical Wordle answers.
 # Run from the wordle-data directory:  .\seed.ps1
 
-$Start   = [datetime]"2021-06-19"
-$Today   = [datetime]::Today
+$Start     = [datetime]"2021-06-19"
+$Today     = [datetime]::Today
+$Yesterday = $Today.AddDays(-1)
 $Headers = @{ "User-Agent" = "Mozilla/5.0" }
 $Answers = New-Object System.Collections.ArrayList
 $Skipped = 0
-$Total   = ($Today - $Start).Days + 1
+$Total   = ($Yesterday - $Start).Days + 1
 
-Write-Host "Fetching $Total dates ($($Start.ToString('yyyy-MM-dd')) to $($Today.ToString('yyyy-MM-dd')))..."
+Write-Host "Fetching $Total dates ($($Start.ToString('yyyy-MM-dd')) to $($Yesterday.ToString('yyyy-MM-dd')))..."
 Write-Host ""
 
 $d = $Start
-while ($d -le $Today) {
+while ($d -le $Yesterday) {
     $dateStr = $d.ToString("yyyy-MM-dd")
 
     try {

@@ -2,10 +2,9 @@ name: Daily Wordle Answer Update
 
 on:
   schedule:
-    # 19:01 UTC = 12:01 PDT (UTC-7).  In winter (PST = UTC-8) this fires at
-    # 11:01 AM Pacific — one hour early, but still well past midnight Eastern
-    # when the NYT puzzle goes live.
-    - cron: '1 19 * * *'
+    # 07:01 UTC = 12:01 AM PDT (UTC-7).  In winter (PST = UTC-8) this fires at
+    # 11:01 PM Pacific the night before — one hour early.
+    - cron: '1 7 * * *'
   workflow_dispatch:  # allow manual trigger from the Actions tab
 
 jobs:
