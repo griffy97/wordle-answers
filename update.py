@@ -1,8 +1,8 @@
 """
-update.py — Called daily by the GitHub Action (19:01 UTC = 12:01 PDT) to append answers.
+update.py — Called daily by the GitHub Action (07:01 UTC = 12:01 AM PDT) to append answers.
 
-Fetches today and the last 6 days that are not yet in answers.json.
-The 7-day window recovers from Action failures without re-checking older history.
+Fetches yesterday and up to 6 days back — never today, so today's active puzzle
+is never exposed. The 7-day window recovers from any missed Action runs.
 """
 
 import json
@@ -33,10 +33,10 @@ def main() -> None:
     existing = {a["date"] for a in answers}
     today = date.today()
 
-    # Check today and up to 6 days back (handles missed Action runs).
+    # Check yesterday back through 7 days ago — never today.
     candidates = [
         (today - timedelta(days=i)).isoformat()
-        for i in range(0, 7)
+        for i in range(1, 8)
         if (today - timedelta(days=i)).isoformat() not in existing
     ]
 
