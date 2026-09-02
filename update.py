@@ -1,5 +1,5 @@
 """
-update.py — Called daily by the GitHub Action (07:01 UTC = 12:01 AM PDT) to append answers.
+update.py — Called daily by the GitHub Action (12:00 UTC = 5 AM PDT / 2 AM HST) to append answers.
 
 Fetches yesterday and up to 6 days back — never today, so today's active puzzle
 is never exposed. The 7-day window recovers from any missed Action runs.

@@ -2,9 +2,9 @@ name: Daily Wordle Answer Update
 
 on:
   schedule:
-    # 07:01 UTC = 12:01 AM PDT (UTC-7).  In winter (PST = UTC-8) this fires at
-    # 11:01 PM Pacific the night before — one hour early.
-    - cron: '1 7 * * *'
+    # 12:00 UTC = 5:00 AM PDT (UTC-7) / 2:00 AM HST (UTC-10).
+    # After midnight in every US timezone, so today's active answer is never exposed.
+    - cron: '0 12 * * *'
   workflow_dispatch:  # allow manual trigger from the Actions tab
 
 jobs:
